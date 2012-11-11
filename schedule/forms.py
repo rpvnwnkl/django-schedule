@@ -19,23 +19,23 @@ class SpanForm(forms.ModelForm):
 class EventForm(SpanForm):
     def __init__(self, hour24=False, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
-    
+
     end_recurring_period = forms.DateTimeField(help_text = _("This date is ignored for one time only events."), required=False)
-    
+
     class Meta:
         model = Event
         exclude = ('creator', 'created_on', 'calendar')
-        
+
 
 class OccurrenceForm(SpanForm):
-    
+
     class Meta:
         model = Occurrence
         exclude = ('original_start', 'original_end', 'event', 'cancelled')
 
 
 class RuleForm(forms.ModelForm):
-    params = forms.CharField(widget=forms.Textarea, help_text=_("Extra parameters to define this type of recursion. Should follow this format: rruleparam:value;otherparam:value."))
+    params = forms.CharField(widget=forms.Textarea, required=False, help_text=_("Extra parameters to define this type of recursion. Should follow this format: rruleparam:value;otherparam:value."))
 
     def clean_params(self):
         params = self.cleaned_data["params"]
