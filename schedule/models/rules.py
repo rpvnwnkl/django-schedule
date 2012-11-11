@@ -3,7 +3,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from dateutil import rrule
 
-RRULE_WEEKDAYS = {"MO":0,"TU":1,"WE":2,"TH":3,"FR":4,"SA":5,"SU":6}
+RRULE_WEEKDAYS = {"MO": 0, "TU": 1, "WE": 2, "TH": 3, "FR": 4, "SA": 5, "SU": 6}
 
 freqs = ( ("YEARLY", _("Yearly")),
             ("MONTHLY", _("Monthly")),
@@ -12,6 +12,7 @@ freqs = ( ("YEARLY", _("Yearly")),
             ("HOURLY", _("Hourly")),
             ("MINUTELY", _("Minutely")),
             ("SECONDLY", _("Secondly")))
+
 
 class Rule(models.Model):
     """
