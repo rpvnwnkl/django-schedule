@@ -149,7 +149,7 @@ class Calendar(models.Model):
 
     @property
     def events(self):
-        return self.event_set
+        return self.event_set.all()
 
     def create_relation(self, obj, distinction=None, inheritable=True):
         """
