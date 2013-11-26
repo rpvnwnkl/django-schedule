@@ -10,15 +10,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import date
 from django.utils.translation import ugettext, ugettext_lazy as _
-<<<<<<< HEAD
-from django.conf import settings
-import datetime
-from dateutil import rrule
-=======
 from django.utils import timezone
 
 from schedule.conf import settings
->>>>>>> llazzaro/master
+
 from schedule.models.rules import Rule
 from schedule.models.calendars import Calendar
 from schedule.utils import OccurrenceReplacer
