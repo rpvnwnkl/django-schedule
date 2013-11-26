@@ -8,7 +8,7 @@
     <td class="{{size}} daynumber free">
 {% endif %}
     <div class="header">
-        <a href="{% url day_calendar calendar.slug %}{% querystring_for_date day.start 3 %}">
+        <a href="{% url "day_calendar" calendar.slug %}{% querystring_for_date day.start 3 %}">
             <b>{{day.start.day}}</b>
         </a>
     </div>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div id="{% hash_occurrence o.occurrence %}" style="display:none;">
-                          {% detail o.occurrence %}
+                          {% include 'schedule/_detail.html' with occurrence=o.occurrence %}
                         </div>
                 {% endfor %}
             {% endif %}

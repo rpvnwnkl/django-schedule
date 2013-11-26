@@ -1,5 +1,5 @@
 {% extends "schedule/base.html" %}
-{% load scheduletags %}
+{% load scheduletags i18n %}
 
 {% block extra_head %}
     {{ block.super }}
@@ -9,11 +9,11 @@
 {% block body %}
 
 <div class="navigation">
-  <a href="{% url month_calendar calendar.slug %}{% querystring_for_date periods.week.start 2 %}">
-    Month
+  <a href="{% url "month_calendar" calendar.slug %}{% querystring_for_date periods.week.start 2 %}">
+    {% trans "Month" %}
   </a>
-  <a href="{% url year_calendar calendar.slug %}{% querystring_for_date periods.week.start 1%}">
-    Year
+  <a href="{% url "year_calendar" calendar.slug %}{% querystring_for_date periods.week.start 1%}">
+    {% trans "Year" %}
   </a>
 </div>
 
@@ -21,8 +21,8 @@
     <div class="calendarname">{{ calendar.name }}</div>
     {% prevnext "week_calendar" calendar.slug periods.week "\Week W, M Y" %}
     <div class="now">
-      <a href="{% url week_calendar calendar.slug %}">
-        This week
+      <a href="{% url "week_calendar" calendar.slug %}">
+        {% trans "This week" %}
       </a>
     </div>
 </div>
@@ -31,7 +31,7 @@
   {% for day in periods.week.get_days %}
     <div class="weekday weekday{{forloop.counter}}">
       <div class="weekdayheader">
-        <a href="{% url day_calendar calendar.slug %}{% querystring_for_date day.start %}">
+        <a href="{% url "day_calendar" calendar.slug %}{% querystring_for_date day.start %}">
           {{day.start|date:"l, d"}}
         </a>
       </div>

@@ -1,17 +1,15 @@
+from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, HOURLY, MINUTELY, SECONDLY
+
 from django.db import models
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
-from dateutil import rrule
-
-RRULE_WEEKDAYS = {"MO": 0, "TU": 1, "WE": 2, "TH": 3, "FR": 4, "SA": 5, "SU": 6}
-
-freqs = ( ("YEARLY", _("Yearly")),
-            ("MONTHLY", _("Monthly")),
-            ("WEEKLY", _("Weekly")),
-            ("DAILY", _("Daily")),
-            ("HOURLY", _("Hourly")),
-            ("MINUTELY", _("Minutely")),
-            ("SECONDLY", _("Secondly")))
+freqs = (("YEARLY", _("Yearly")),
+         ("MONTHLY", _("Monthly")),
+         ("WEEKLY", _("Weekly")),
+         ("DAILY", _("Daily")),
+         ("HOURLY", _("Hourly")),
+         ("MINUTELY", _("Minutely")),
+         ("SECONDLY", _("Secondly")))
 
 
 class Rule(models.Model):
@@ -53,17 +51,17 @@ class Rule(models.Model):
         verbose_name_plural = _('rules')
         app_label = 'schedule'
 
-    def parse_param(self, param_value):
-        param = param_value.split('(',1)[0]
-        if param in RRULE_WEEKDAYS:
-            try:
-                return eval("rrule.%s" % param_value)
-            except ValueError:
-                raise ValueError('rrule parameter improperly formatted. Error on: %s' % param_value)
-        try:
-            return int(param_value)
-        except ValueError:
-            raise ValueError('rrule parameter should be integer or weekday constant (e.g. MO, TU, etc.). Error on: %s' % param_value)
+    def rrule_frequency(self):
+        compatibiliy_dict = {
+                'DAILY': DAILY,
+                'MONTHLY': MONTHLY,
+                'WEEKLY': WEEKLY,
+                'YEARLY': YEARLY,
+                'HOURLY': HOURLY,
+                'MINUTELY': MINUTELY,
+                'SECONDLY': SECONDLY
+                }
+        return compatibiliy_dict[self.frequency]
 
     def get_params(self):
         """
@@ -88,5 +86,4 @@ class Rule(models.Model):
 
     def __unicode__(self):
         """Human readable string for Rule"""
-        return self.name
-
+        return 'Rule %s params %s' % (self.name, self.params)

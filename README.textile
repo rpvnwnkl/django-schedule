@@ -1,4 +1,10 @@
-h1. Django-schedule
+Build Status
+<p><img src="https://travis-ci.org/llazzaro/django-scheduler.png" alt="travis-build-status" /></p>
+
+
+
+
+h1. Django-scheduler
 
 A calendaring/scheduling application, featuring:
 
@@ -10,7 +16,9 @@ A calendaring/scheduling application, featuring:
  * view day, week, month, three months and year
  * project sample which can be launched immediately and reused in your project
 
-See "wiki page":http://wiki.github.com/bartekgorny/django-schedule/wiki for more
+
+See see "wiki page":https://github.com/llazzaro/django-scheduler/wiki for more.
+
 
 h2. Installation
 
@@ -27,7 +35,7 @@ h2. Settings.py
 
 h3. REQUIRED
 
-INSTALLED_APPS - add: 
+INSTALLED_APPS - add:
     'schedule'
 
 TEMPLATE_CONTEXT_PROCESSORS - add:
@@ -51,7 +59,7 @@ Defaults to False
 
 CHECK_PERMISSION_FUNC
 
-This setting controls the callable used to determine if a user has permission to edit an event or occurance. The callable must take the object and the user and return a boolean. 
+This setting controls the callable used to determine if a user has permission to edit an event or occurance. The callable must take the object and the user and return a boolean.
 
 Default:
 <pre>
