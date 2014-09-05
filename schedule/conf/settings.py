@@ -5,11 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 fdow_default = 0 # Sunday
 
 # Look for FIRST_DAY_OF_WEEK as a locale setting
-fdow = ugettext('FIRST_DAY_OF_WEEK')
 try:
-    FIRST_DAY_OF_WEEK = int(fdow)
-except ValueError:
-    # Let's try our settings
     fdow = getattr(settings, 'FIRST_DAY_OF_WEEK', fdow_default)
     FIRST_DAY_OF_WEEK = int(fdow)
 except ValueError:
