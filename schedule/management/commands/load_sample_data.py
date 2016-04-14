@@ -11,7 +11,7 @@ class Command(NoArgsCommand):
         from schedule.models import Event
         from schedule.models import Rule
 
-        print "checking for existing data ..."
+        print ("checking for existing data ...")
         try:
             cal = Calendar.objects.get(name="yml_cal")
             print "It looks like you already have loaded the sample data, quitting."
