@@ -131,7 +131,7 @@ class Period(object):
         period = self.create_sub_period(cls)
         while period.start < self.end:
             yield self.create_sub_period(cls, period.start)
-            period = period.next()
+            period = next(period)
 
 
 class Year(Period):
@@ -281,7 +281,7 @@ class Week(Period):
         return start, end
 
     def __unicode__(self):
-        date_format = u'l, %s' % ugettext("DATE_FORMAT")
+        date_format = 'l, %s' % ugettext("DATE_FORMAT")
         return ugettext('Week: %(start)s-%(end)s') % {
             'start': date_filter(self.start, date_format),
             'end': date_filter(self.end, date_format),
@@ -306,7 +306,7 @@ class Day(Period):
         return start, end
 
     def __unicode__(self):
-        date_format = u'l, %s' % ugettext("DATE_FORMAT")
+        date_format = 'l, %s' % ugettext("DATE_FORMAT")
         return ugettext('Day: %(start)s-%(end)s') % {
             'start': date_filter(self.start, date_format),
             'end': date_filter(self.end, date_format),

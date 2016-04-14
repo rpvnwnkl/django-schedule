@@ -77,7 +77,7 @@ class CalendarManager(models.Manager):
             return self.get_calendar_for_object(obj, distinction)
         except Calendar.DoesNotExist:
             if name is None:
-                calendar = Calendar(name=unicode(obj))
+                calendar = Calendar(name=str(obj))
             else:
                 calendar = Calendar(name=name)
             calendar.slug = slugify(calendar.name)
@@ -240,4 +240,4 @@ class CalendarRelation(models.Model):
         app_label = 'schedule'
 
     def __unicode__(self):
-        return u'%s - %s' % (self.calendar, self.content_object)
+        return '%s - %s' % (self.calendar, self.content_object)

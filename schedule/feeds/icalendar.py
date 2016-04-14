@@ -20,7 +20,7 @@ class ICalendarFeed(object):
         
         cal = vobject.iCalendar()
 
-        for item in self.items():
+        for item in list(self.items()):
 
             event = cal.add('vevent')
 

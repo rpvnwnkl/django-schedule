@@ -51,7 +51,7 @@ class Event(models.Model):
     get_latest_by = 'start'
 
     def __unicode__(self):
-        date_format = u'%s' % ugettext("DATE_FORMAT")
+        date_format = '%s' % ugettext("DATE_FORMAT")
         return ugettext('%(title)s: %(start)s - %(end)s') % {
             'title': self.title,
             'start': date(self.start, date_format),
@@ -163,7 +163,7 @@ class Event(models.Model):
         date_iter = iter(rule)
         difference = self.end - self.start
         while True:
-            o_start = date_iter.next()
+            o_start = next(date_iter)
             if o_start > self.end_recurring_period:
                 raise StopIteration
             o_end = o_start + difference
@@ -178,7 +178,7 @@ class Event(models.Model):
         occ_replacer = OccurrenceReplacer(self.occurrence_set.all())
         generator = self._occurrences_after_generator(after)
         while True:
-            next = generator.next()
+            next = next(generator)
             yield occ_replacer.get_occurrence(next)
 
     def next_occurrence(self):
@@ -338,7 +338,7 @@ class EventRelation(models.Model):
         app_label = 'schedule'
 
     def __unicode__(self):
-        return u'%s(%s)-%s' % (self.event.title, self.distinction, self.content_object)
+        return '%s(%s)-%s' % (self.event.title, self.distinction, self.content_object)
 
 
 class Occurrence(models.Model):
